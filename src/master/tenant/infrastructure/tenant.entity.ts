@@ -11,6 +11,12 @@ export class TenantEntity {
   idx: number;
 
   @Column('varchar', {
+    name: 'name',
+    comment: 'name',
+  })
+  name: string;
+
+  @Column('varchar', {
     name: 'required',
     comment: 'Required Column',
   })
@@ -30,7 +36,7 @@ export class TenantEntity {
     comment: 'Updated At',
   })
   updatedAt: Date;
-  
+
   @Column('timestamp', {
     name: 'created_at',
     default: () => 'CURRENT_TIMESTAMP',
