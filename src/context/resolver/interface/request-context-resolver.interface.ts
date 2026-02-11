@@ -1,5 +1,5 @@
 import { RequestContext } from '../../type/request-context.type';
 
-export interface ContextResolverService {
+export interface RequestContextResolver {
   resolve(subdomain: string): RequestContext;
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { DataSourceService } from 'src/infra/type-orm/service/data-source.service';
 import { RequestContext } from '../../type/request-context.type';
-import { ContextResolverService } from '../service/context-resolver.service';
+import { RequestContextResolver } from '../interface/request-context-resolver.interface';
 
 @Injectable()
-export class MasterContextResolver implements ContextResolverService {
+export class MasterContextResolver implements RequestContextResolver {
   constructor(private readonly dataSourceService: DataSourceService) {}
 
   resolve(subdomain: string): RequestContext {
