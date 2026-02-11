@@ -5,4 +5,4 @@ import { TenantConfigModule } from './tenant/tenant-config.module';
 @Module({
   imports: [MasterConfigModule, TenantConfigModule],
 })
-export class ConfigModule {}
+export class ConfigExModule {}
