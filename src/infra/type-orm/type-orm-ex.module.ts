@@ -1,15 +1,8 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSourceModule } from 'src/factory/data-source/data-source.module';
-import { MasterTypeOrmModuleOptionsFactory } from './factory/master-type-orm-module-options.factory';
-import { DataSourceService } from './service/data-source.service';
+import { TypeOrmDatabaseModule } from './database/type-orm-database.module';
+import { TypeOrmTransactionModule } from './transaction/type-orm-transaction.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRootAsync({ name: 'MASTER', useClass: MasterTypeOrmModuleOptionsFactory }),
-    DataSourceModule,
-  ],
-  providers: [DataSourceService],
-  exports: [DataSourceService],
+  imports: [TypeOrmDatabaseModule, TypeOrmTransactionModule],
 })
 export class TypeOrmExModule {}

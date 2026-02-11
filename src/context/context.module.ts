@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ContextManagerService } from './manager/service/context-manager.service';
+import { ContextManagerModule } from './manager/context-manager.module';
 import { ContextResolverModule } from './resolver/context-resolver.module';
 
 @Module({
-  imports: [ContextResolverModule, ContextManagerService],
-  exports: [ContextResolverModule, ContextManagerService],
+  imports: [ContextResolverModule, ContextManagerModule],
+  exports: [ContextResolverModule],
 })
 export class ContextModule {}

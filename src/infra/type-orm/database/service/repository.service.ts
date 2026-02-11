@@ -3,7 +3,7 @@ import { EntityTarget, ObjectLiteral, Repository } from 'typeorm';
 import { ContextManagerService } from 'src/context/manager/service/context-manager.service';
 
 @Injectable()
-export class RepositoryResolver {
+export class RepositoryService {
   constructor(private readonly contextManagerService: ContextManagerService) {}
 
   private getContext() {

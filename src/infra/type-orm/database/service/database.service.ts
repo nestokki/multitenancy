@@ -7,7 +7,7 @@ import { TENANT_DATASOURCE } from 'src/factory/data-source/token/tenant-data-sou
 import { TenantEntity } from 'src/master/tenant/infrastructure/tenant.entity';
 
 @Injectable()
-export class DataSourceService implements OnModuleInit {
+export class DatabaseService implements OnModuleInit {
   private readonly tenantDataSourceMap = new Map<string, DataSource>();
 
   constructor(
