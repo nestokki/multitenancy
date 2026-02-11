@@ -7,10 +7,8 @@ export class MasterTypeOrmModuleOptionsFactory implements TypeOrmOptionsFactory 
   constructor(private readonly masterConfigService: MasterConfigService) {}
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
-    const { getTypeOrmDataSourceOptions } = this.masterConfigService;
-
     return {
-      ...getTypeOrmDataSourceOptions(),
+      ...this.masterConfigService.getTypeOrmDataSourceOptions(),
       type: 'mysql',
       entities: ['dist/master/**/*.entity.js'],
       synchronize: true,

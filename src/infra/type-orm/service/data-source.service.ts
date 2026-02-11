@@ -3,6 +3,7 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 import { Nullable } from 'src/common/type/native.type';
+import { TENANT_DATASOURCE } from 'src/factory/data-source/token/tenant-data-source.token';
 import { TenantEntity } from 'src/master/tenant/infrastructure/tenant.entity';
 
 @Injectable()
@@ -11,7 +12,7 @@ export class DataSourceService implements OnModuleInit {
 
   constructor(
     @InjectDataSource('MASTER') private readonly masterDataSource: DataSource,
-    @Inject('TENANT') private readonly tenantDataSourceOptions: DataSourceOptions,
+    @Inject(TENANT_DATASOURCE) private readonly tenantDataSourceOptions: DataSourceOptions,
   ) {}
 
   async onModuleInit(): Promise<void> {
@@ -45,12 +46,12 @@ export class DataSourceService implements OnModuleInit {
   }
 
   private async createTenantDataSource(tenant: string): Promise<DataSource> {
-    const defaultDataSource = this.tenantDataSourceOptions as MysqlConnectionOptions;
+    const defaultDataSource = this.tenantDataSourceOptions;
 
     const tenantDataSourceOptions: DataSourceOptions = {
       ...defaultDataSource,
       database: `${tenant}_db`,
-    };
+    } as MysqlConnectionOptions;
 
     return new DataSource(tenantDataSourceOptions);
   }
