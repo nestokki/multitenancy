@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, EntityManager } from 'typeorm';
+import { Repository } from 'typeorm';
+import { RepositoryService } from 'src/infra/type-orm/database/service/repository.service';
 import { TenantCreateProps, TenantUpdateProps } from '../domain/tenant.type';
 import { TenantDomain } from '../domain/tenant.domain';
 import { TenantEntity } from './tenant.entity';
@@ -8,26 +8,26 @@ import { TenantMapper } from './tenant.mapper';
 
 @Injectable()
 export class TenantRepository {
-  constructor(@InjectRepository(TenantEntity) private readonly typeOrm: Repository<TenantEntity>) {}
+  constructor(private readonly repositoryService: RepositoryService) {}
 
-  private repository(manager?: EntityManager): Repository<TenantEntity> {
-    return manager ? manager.getRepository(TenantEntity) : this.typeOrm;
+  private repository(): Repository<TenantEntity> {
+    return this.repositoryService.get(TenantEntity);
   }
 
-  async createTenant(props: TenantCreateProps, manager?: EntityManager): Promise<void> {
-    await this.repository(manager).save(TenantMapper.toEntity(props));
+  async createTenant(props: TenantCreateProps): Promise<void> {
+    await this.repository().save(TenantMapper.toEntity(props));
   }
 
-  async updateTenant(idx: number, props: TenantUpdateProps, manager?: EntityManager): Promise<void> {
-    await this.repository(manager).update({ idx }, TenantMapper.toPartialEntity(props));
+  async updateTenant(idx: number, props: TenantUpdateProps): Promise<void> {
+    await this.repository().update({ idx }, TenantMapper.toPartialEntity(props));
   }
 
-  async deleteTenant(idx: number, manager?: EntityManager): Promise<void> {
-    await this.repository(manager).delete({ idx });
+  async deleteTenant(idx: number): Promise<void> {
+    await this.repository().delete({ idx });
   }
 
-  async findTenantByIdx(idx: number, manager?: EntityManager): Promise<TenantDomain | null> {
-    const entity = await this.repository(manager)
+  async findTenantByIdx(idx: number): Promise<TenantDomain | null> {
+    const entity = await this.repository()
       .createQueryBuilder('tenant')
       .where('tenant.idx = :idx', { idx })
       .getOne();
@@ -35,8 +35,8 @@ export class TenantRepository {
     return entity && TenantMapper.toDomain(entity);
   }
 
-  async findTenantList(manager?: EntityManager): Promise<TenantDomain[]> {
-    const entities = await this.repository(manager)
+  async findTenantList(): Promise<TenantDomain[]> {
+    const entities = await this.repository()
       .createQueryBuilder('tenant')
       .orderBy('tenant.createdAt', 'DESC')
       .getMany();

@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
 import { UserService } from './domain/user.service';
-import { UserEntity } from './infrastructure/user.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRepository } from './infrastructure/user.repository';
 import { CreateUserUseCase } from './application/command/create-user.use-case';
 import { UpdateUserUseCase } from './application/command/update-user.use-case';
@@ -12,9 +10,16 @@ import { UserCommandController } from './presentation/command/user-command.contr
 import { UserQueryController } from './presentation/query/user-query.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity])],
   controllers: [UserCommandController, UserQueryController],
-  providers: [UserService, UserRepository, CreateUserUseCase, UpdateUserUseCase, DeleteUserUseCase, FindUserUseCase, FindUserListUseCase],
+  providers: [
+    UserService,
+    UserRepository,
+    CreateUserUseCase,
+    UpdateUserUseCase,
+    DeleteUserUseCase,
+    FindUserUseCase,
+    FindUserListUseCase,
+  ],
   exports: [UserService],
 })
 export class UserModule {}
