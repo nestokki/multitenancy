@@ -7,6 +7,10 @@ import { RequestContextResolver } from '../interface/request-context-resolver.in
 export class MasterContextResolver implements RequestContextResolver {
   constructor(private readonly databaseService: DatabaseService) {}
 
+  canResolve(subDomain: string): boolean {
+    return subDomain.includes('master');
+  }
+
   resolve(subdomain: string): RequestContext {
     const { manager: masterEntityManager } = this.databaseService.getMasterDataSource();
 

@@ -13,10 +13,14 @@ export class RequestContextMiddleware implements NestMiddleware {
   ) {}
 
   use(req: Request, res: Response, next: NextFunction): void | Promise<void> {
-    for (const resolver of this.RequestContextResolvers) {
-      const context = resolver.resolve(extractSubdomain(req));
+    const subdomain = extractSubdomain(req);
 
-      return this.contextManagerService.run(context, () => next());
+    for (const resolver of this.RequestContextResolvers) {
+      if (resolver.canResolve(subdomain)) {
+        const context = resolver.resolve(subdomain);
+
+        return this.contextManagerService.run(context, () => next());
+      }
     }
   }
 }
