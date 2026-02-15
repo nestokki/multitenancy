@@ -8,14 +8,14 @@ import { extractSubdomain } from 'src/context/util/extract-subdomain.util';
 @Injectable()
 export class RequestContextMiddleware implements NestMiddleware {
   constructor(
-    @Inject(CONTEXT_RESOLVERS) private readonly RequestContextResolvers: RequestContextResolver[],
+    @Inject(CONTEXT_RESOLVERS) private readonly requestContextResolvers: RequestContextResolver[],
     private readonly contextManagerService: ContextManagerService,
   ) {}
 
   use(req: Request, res: Response, next: NextFunction): void | Promise<void> {
     const subdomain = extractSubdomain(req);
 
-    for (const resolver of this.RequestContextResolvers) {
+    for (const resolver of this.requestContextResolvers) {
       if (resolver.canResolve(subdomain)) {
         const context = resolver.resolve(subdomain);
 
