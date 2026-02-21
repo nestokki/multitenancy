@@ -4,7 +4,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 import { Nullable } from 'src/common/type/native.type';
 import { TENANT_DATASOURCE } from 'src/factory/data-source/token/tenant-data-source.token';
-import { TenantEntity } from 'src/master/tenant/infrastructure/tenant.entity';
+import { TenantEntity } from 'src/api/tenant/infrastructure/tenant.entity';
 
 @Injectable()
 export class DatabaseService implements OnModuleInit {
