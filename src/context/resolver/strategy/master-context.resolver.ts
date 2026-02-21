@@ -16,9 +16,9 @@ export class MasterContextResolver implements RequestContextResolver {
 
     return {
       scope: 'MASTER',
-      subdomain,
-      manager: masterEntityManager,
       handler: MasterContextResolver.name,
+      subdomain,
+      masterManager: masterEntityManager,
     };
   }
 }

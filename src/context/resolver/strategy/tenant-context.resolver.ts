@@ -12,6 +12,7 @@ export class TenantContextResolver implements RequestContextResolver {
   }
 
   resolve(subdomain: string): RequestContext {
+    const { manager: masterEntityManager } = this.databaseService.getMasterDataSource();
     const tenantDataSource = this.databaseService.getTenantDataSource(subdomain);
 
     if (!tenantDataSource)
@@ -21,9 +22,10 @@ export class TenantContextResolver implements RequestContextResolver {
 
     return {
       scope: 'TENANT',
-      subdomain: subdomain,
-      manager: tenantEntityManager,
       handler: TenantContextResolver.name,
+      subdomain,
+      masterManager: masterEntityManager,
+      tenantManager: tenantEntityManager,
     };
   }
 }

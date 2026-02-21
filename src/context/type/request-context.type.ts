@@ -3,7 +3,8 @@ import { EntityManager } from 'typeorm';
 
 export interface RequestContext {
   scope: RequestScope;
-  subdomain: string;
-  manager: EntityManager;
   handler: string;
+  subdomain: string;
+  masterManager: EntityManager;
+  tenantManager?: EntityManager;
 }
