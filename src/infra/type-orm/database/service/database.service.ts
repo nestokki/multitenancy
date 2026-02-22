@@ -3,7 +3,7 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
 import { Nullable } from 'src/common/type/native.type';
-import { TENANT_DATASOURCE } from 'src/factory/data-source/token/tenant-data-source.token';
+import { TENANT_DATASOURCE } from 'src/infra/type-orm/database/factory/token/tenant-data-source.token';
 import { TenantEntity } from 'src/api/tenant/infrastructure/tenant.entity';
 
 @Injectable()

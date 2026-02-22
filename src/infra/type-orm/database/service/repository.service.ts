@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { EntityTarget, ObjectLiteral, Repository } from 'typeorm';
-import { ContextManagerService } from 'src/context/manager/service/context-manager.service';
+import { ContextManagerService } from 'src/infra/als/request/service/request-context.service';
 
 @Injectable()
 export class RepositoryService {

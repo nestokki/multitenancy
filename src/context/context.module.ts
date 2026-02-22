@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ContextManagerModule } from './manager/context-manager.module';
-import { ContextResolverModule } from './resolver/context-resolver.module';
+import { ContextResolversProvider } from './resolver/provider/context-resolvers.provider';
+import { MasterContextResolver } from './resolver/strategy/master-context.resolver';
+import { TenantContextResolver } from './resolver/strategy/tenant-context.resolver';
+import { CONTEXT_RESOLVERS } from './resolver/token/context-resolvers.token';
 
 @Module({
-  imports: [ContextResolverModule, ContextManagerModule],
-  exports: [ContextResolverModule],
+  providers: [MasterContextResolver, TenantContextResolver, ContextResolversProvider],
+  exports: [CONTEXT_RESOLVERS],
 })
 export class ContextModule {}

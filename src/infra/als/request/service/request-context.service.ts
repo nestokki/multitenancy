@@ -2,10 +2,10 @@ import { Inject, Injectable } from '@nestjs/common';
 import { AsyncLocalStorage } from 'async_hooks';
 import { Nullable } from 'src/common/type/native.type';
 import { RequestContext } from 'src/context/type/request-context.type';
-import { REQUEST_CONTEXT_ALS } from 'src/factory/als/token/request-context-als.token';
+import { REQUEST_CONTEXT_ALS } from 'src/infra/als/request/factory/token/request-context-als.token';
 
 @Injectable()
-export class ContextManagerService {
+export class RequestContextService {
   constructor(
     @Inject(REQUEST_CONTEXT_ALS)
     private readonly requestContextAls: AsyncLocalStorage<RequestContext>,

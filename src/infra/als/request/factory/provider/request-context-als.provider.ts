@@ -1,6 +1,6 @@
 import { Provider } from '@nestjs/common';
 import { AsyncLocalStorage } from 'async_hooks';
-import { RequestContext } from '../../../context/type/request-context.type';
+import { RequestContext } from 'src/context/type/request-context.type';
 import { REQUEST_CONTEXT_ALS } from '../token/request-context-als.token';
 
 export const RequestContextAlsProvider: Provider = {
