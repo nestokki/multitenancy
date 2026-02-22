@@ -1,4 +1,4 @@
-import { RequestContext } from '../../type/request-context.type';
+import { RequestContext } from '../type/request-context.type';
 
 export interface RequestContextResolver {
   canResolve(subDomain: string): boolean;

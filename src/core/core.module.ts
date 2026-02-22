@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { RequestContextMiddleware } from './middleware/request-context.middleware';
-import { ContextModule } from 'src/context/context.module';
+import { ContextModule } from 'src/core/middleware/context/context.module';
 
 @Module({
   imports: [ContextModule],

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from 'src/infra/type-orm/database/service/database.service';
 import { RequestContext } from '../../type/request-context.type';
-import { RequestContextResolver } from '../interface/request-context-resolver.interface';
+import { RequestContextResolver } from '../../interface/request-context-resolver.interface';
 
 @Injectable()
 export class MasterContextResolver implements RequestContextResolver {

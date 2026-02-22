@@ -1,7 +1,7 @@
 import { Provider } from '@nestjs/common';
-import { CONTEXT_RESOLVERS } from 'src/context/resolver/token/context-resolvers.token';
-import { MasterContextResolver } from '../strategy/master-context.resolver';
-import { TenantContextResolver } from '../strategy/tenant-context.resolver';
+import { CONTEXT_RESOLVERS } from 'src/core/middleware/context/resolver/factory/token/context-resolvers.token';
+import { MasterContextResolver } from '../../strategy/master-context.resolver';
+import { TenantContextResolver } from '../../strategy/tenant-context.resolver';
 
 export const ContextResolversProvider: Provider = {
   provide: CONTEXT_RESOLVERS,

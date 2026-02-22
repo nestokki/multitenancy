@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { AsyncLocalStorage } from 'async_hooks';
 import { Nullable } from 'src/common/type/native.type';
-import { RequestContext } from 'src/context/type/request-context.type';
+import { RequestContext } from 'src/core/middleware/context/type/request-context.type';
 import { REQUEST_CONTEXT_ALS } from 'src/infra/als/request/factory/token/request-context-als.token';
 
 @Injectable()
